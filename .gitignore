@@ -91,6 +91,7 @@ local.properties
 
 HELP.md
 .idea/
+.gitattributes
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
@@ -127,7 +128,7 @@ HELP.md
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
-# *.iml
+*.iml
 # *.ipr
 
 # CMake
