@@ -4,7 +4,7 @@ import com.ssafy.sandbox.controller.request.CreateTodoReq;
 import com.ssafy.sandbox.domain.todo.dto.response.ReadTodosResDto;
 import com.ssafy.sandbox.domain.todo.entity.Todo;
 
-import com.ssafy.sandbox.domain.todo.exception.TodoNotFoundException;
+import com.ssafy.sandbox.global.exception.TodoNotFoundException;
 import com.ssafy.sandbox.domain.todo.mapper.TodoServiceMapper;
 import com.ssafy.sandbox.domain.todo.repository.TodoRepository;
 import com.ssafy.sandbox.domain.todo.service.TodoService;

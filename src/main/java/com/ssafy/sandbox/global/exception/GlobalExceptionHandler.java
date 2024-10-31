@@ -1,4 +1,4 @@
-package com.ssafy.sandbox.domain.todo.exception;
+package com.ssafy.sandbox.global.exception;
 
 import com.ssafy.sandbox.controller.response.ErrorRes;
 import lombok.extern.slf4j.Slf4j;

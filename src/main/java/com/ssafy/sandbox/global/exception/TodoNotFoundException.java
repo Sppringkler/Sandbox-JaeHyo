@@ -1,4 +1,4 @@
-package com.ssafy.sandbox.domain.todo.exception;
+package com.ssafy.sandbox.global.exception;
 
 public class TodoNotFoundException extends DatabaseException{
 
