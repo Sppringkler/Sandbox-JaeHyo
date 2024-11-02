@@ -1,9 +1,13 @@
 package com.ssafy.sandbox.domain.todo.repository.impl;
 
+import com.querydsl.jpa.impl.JPAQuery;
 import com.ssafy.sandbox.domain.todo.entity.Todo;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.sandbox.domain.todo.repository.TodoRepository;
 import jakarta.persistence.EntityManager;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

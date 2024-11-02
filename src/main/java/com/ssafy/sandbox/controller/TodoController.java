@@ -13,13 +13,13 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/todos")
 @CrossOrigin(origins = "*")
+@RequestMapping("/todos")
 public class TodoController {
 
-    public final TodoService todoService;
+    private final TodoService todoService;
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<ReadTodosRes> readTodos() {
         List<ReadTodosResDto> readTodoRespDto = todoService.readTodos();
 
@@ -28,7 +28,7 @@ public class TodoController {
         );
     }
 
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<SuccessRes> createTodo(@RequestBody CreateTodoReq req) {
         int id = todoService.createTodo(req);
 
