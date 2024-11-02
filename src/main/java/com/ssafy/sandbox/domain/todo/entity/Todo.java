@@ -2,6 +2,7 @@ package com.ssafy.sandbox.domain.todo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Getter
