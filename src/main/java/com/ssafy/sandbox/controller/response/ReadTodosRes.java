@@ -1,16 +1,19 @@
 package com.ssafy.sandbox.controller.response;
 
 import com.ssafy.sandbox.domain.todo.dto.response.ReadTodosResDto;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
-@RequiredArgsConstructor
-@Builder
 @Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ReadTodosRes {
-    private final String message;
-    private final List<ReadTodosResDto> todos;
+
+    public String message;
+
+    public List<ReadTodosResDto> todos;
+
 }

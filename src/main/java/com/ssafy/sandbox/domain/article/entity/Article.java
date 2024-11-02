@@ -1,7 +1,9 @@
-package com.ssafy.sandbox.domain.todo.entity;
+package com.ssafy.sandbox.domain.article.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -9,15 +11,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "todos")
-public class Todo {
+@Table(name = "articles")
+public class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String content;
-  
-    @ColumnDefault("0")
-    private boolean completed;
-
+    private String title;
+    private LocalDateTime createdAt;
 }

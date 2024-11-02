@@ -1,17 +1,15 @@
 package com.ssafy.sandbox.domain.todo.dto.response;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
+import lombok.*;
 
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter @Setter
 public class ReadTodosResDto {
-    private int id;
+
+    private Long id;
     private String content;
     private boolean completed;
 }
