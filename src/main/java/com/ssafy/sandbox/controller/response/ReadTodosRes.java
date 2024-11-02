@@ -15,4 +15,5 @@ public class ReadTodosRes {
     public String message;
 
     public List<ReadTodosResDto> todos;
+
 }

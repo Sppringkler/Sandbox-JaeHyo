@@ -16,5 +16,8 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String content;
+  
+    @ColumnDefault("0")
     private boolean completed;
+
 }
