@@ -18,4 +18,8 @@ public class Todo {
 
     @ColumnDefault("0")
     private boolean completed;
+
+    public Todo(String content){
+        this.content = content;
+    }
 }
