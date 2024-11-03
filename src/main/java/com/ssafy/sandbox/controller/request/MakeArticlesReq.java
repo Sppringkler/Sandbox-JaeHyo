@@ -1,6 +1,6 @@
 package com.ssafy.sandbox.controller.request;
 
-import com.ssafy.sandbox.domain.article.dto.ArticleReqDto;
+import com.ssafy.sandbox.domain.article.dto.request.ArticleReqDto;
 import lombok.*;
 
 import java.util.List;

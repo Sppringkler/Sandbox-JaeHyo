@@ -11,13 +11,13 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReadArticlesWithPagingResp {
+public class ReadArticlesWithPagingCursorResp {
 
-    private int totalPage;
+    private int lastId;
     private List<ReadArticlesWithPagingRespDto> articles;
 
-    public ReadArticlesWithPagingResp(Page<ReadArticlesWithPagingRespDto> pagedArticles) {
-        this.totalPage = pagedArticles.getTotalPages();
+    public ReadArticlesWithPagingCursorResp(Page<ReadArticlesWithPagingRespDto> pagedArticles, int cursorId) {
+        this.lastId = cursorId + pagedArticles.getNumberOfElements();
         this.articles = pagedArticles.getContent();
     }
 }
