@@ -1,4 +1,4 @@
-package com.ssafy.sandbox.domain.article.dto;
+package com.ssafy.sandbox.domain.article.dto.request;
 
 import lombok.*;
 
@@ -9,8 +9,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReadArticlesWithPagingRespDto {
-
+public class ArticleReqDto {
     private int id;
     private String title;
     private LocalDateTime createdAt;

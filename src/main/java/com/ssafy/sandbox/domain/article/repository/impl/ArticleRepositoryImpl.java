@@ -28,7 +28,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     }
 
     @Override
-    public Page<Article> findPagedArticles(Pageable pageable) {
+    public Page<Article> findPagedArticlesOffset(Pageable pageable) {
         List<Article> articleList = jpaQueryFactory
                 .selectFrom(article)
                 .offset(pageable.getOffset())
@@ -41,6 +41,17 @@ public class ArticleRepositoryImpl implements ArticleRepository {
                 .fetchOne()).orElse(0L);
 
         return new PageImpl<>(articleList, pageable, total);
+    }
+
+    @Override
+    public Page<Article> findPagedArticlesCursor(Pageable pageable, int cursorId) {
+        List<Article> articleList = jpaQueryFactory
+                .selectFrom(article)
+                .where(article.id.gt(cursorId))
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        return new PageImpl<>(articleList);
     }
 
     @Override

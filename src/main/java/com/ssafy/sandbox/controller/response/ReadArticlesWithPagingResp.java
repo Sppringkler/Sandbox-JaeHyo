@@ -1,6 +1,6 @@
 package com.ssafy.sandbox.controller.response;
 
-import com.ssafy.sandbox.domain.article.dto.ReadArticlesWithPagingRespDto;
+import com.ssafy.sandbox.domain.article.dto.response.ReadArticlesWithPagingRespDto;
 import lombok.*;
 import org.springframework.data.domain.Page;
 
