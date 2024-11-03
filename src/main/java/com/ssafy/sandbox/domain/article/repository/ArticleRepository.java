@@ -6,7 +6,8 @@ import org.springframework.data.domain.Pageable;
 
 public interface ArticleRepository{
 
-    Page<Article> findPagedArticles(Pageable pageable);
+    Page<Article> findPagedArticlesOffset(Pageable pageable);
+    Page<Article> findPagedArticlesCursor(Pageable pageable, int cursorId);
 
     void save(Article article);
 }

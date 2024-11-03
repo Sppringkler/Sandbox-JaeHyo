@@ -1,11 +1,11 @@
 package com.ssafy.sandbox.domain.article.service.impl;
 
-import com.ssafy.sandbox.domain.article.dto.ArticleReqDto;
+import com.ssafy.sandbox.domain.article.dto.request.ArticleReqDto;
 import com.ssafy.sandbox.domain.article.entity.Article;
 import com.ssafy.sandbox.domain.article.mapper.ArticleServiceMapper;
 import com.ssafy.sandbox.domain.article.repository.ArticleRepository;
 import com.ssafy.sandbox.domain.article.service.ArticleService;
-import com.ssafy.sandbox.domain.article.dto.ReadArticlesWithPagingRespDto;
+import com.ssafy.sandbox.domain.article.dto.response.ReadArticlesWithPagingRespDto;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -25,10 +25,19 @@ public class ArticleServiceImpl implements ArticleService {
     private final ArticleServiceMapper mapper;
 
     @Override
-    public Page<ReadArticlesWithPagingRespDto> readArticlesWithPaging(int size, int page) {
+    public Page<ReadArticlesWithPagingRespDto> readArticlesWithPagingOffset(int size, int page) {
         Pageable pageable = PageRequest.of(page, size);
 
-        Page<Article> articlesPage = articleRepository.findPagedArticles(pageable);
+        Page<Article> articlesPage = articleRepository.findPagedArticlesOffset(pageable);
+
+        return articlesPage.map(mapper::to);
+    }
+
+    @Override
+    public Page<ReadArticlesWithPagingRespDto> readArticlesWithPagingCursor(int size, int cursorId) {
+        Pageable pageable = PageRequest.of(0, size); //항상 0
+
+        Page<Article> articlesPage = articleRepository.findPagedArticlesCursor(pageable,cursorId);
 
         return articlesPage.map(mapper::to);
     }

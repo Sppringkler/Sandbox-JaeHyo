@@ -1,6 +1,6 @@
 package com.ssafy.sandbox.domain.article.mapper;
 
-import com.ssafy.sandbox.domain.article.dto.ReadArticlesWithPagingRespDto;
+import com.ssafy.sandbox.domain.article.dto.response.ReadArticlesWithPagingRespDto;
 import com.ssafy.sandbox.domain.article.entity.Article;
 import org.mapstruct.Mapper;
 

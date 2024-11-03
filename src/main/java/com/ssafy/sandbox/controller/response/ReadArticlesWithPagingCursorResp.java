@@ -13,11 +13,15 @@ import java.util.List;
 @AllArgsConstructor
 public class ReadArticlesWithPagingCursorResp {
 
-    private int lastId;
+    private Integer lastId;
     private List<ReadArticlesWithPagingRespDto> articles;
 
     public ReadArticlesWithPagingCursorResp(Page<ReadArticlesWithPagingRespDto> pagedArticles, int cursorId) {
-        this.lastId = cursorId + pagedArticles.getNumberOfElements();
+        if(pagedArticles.getNumberOfElements()==0){ //데이터 다 가져온 경우
+            this.lastId = null;
+        } else{
+            this.lastId = cursorId + pagedArticles.getNumberOfElements();
+        }
         this.articles = pagedArticles.getContent();
     }
 }
