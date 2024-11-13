@@ -1,11 +1,11 @@
 package com.ssafy.sandbox.domain.user.service.impl;
 
 import com.ssafy.sandbox.domain.emailauthinfo.service.EmailAuthInfoService;
-import com.ssafy.sandbox.domain.todo.entity.Todo;
 import com.ssafy.sandbox.domain.user.entity.User;
 import com.ssafy.sandbox.domain.user.repository.UserRepository;
 import com.ssafy.sandbox.domain.user.service.UserService;
-import com.ssafy.sandbox.global.exception.TodoNotFoundException;
+import com.ssafy.sandbox.global.exception.type.DatabaseException;
+import com.ssafy.sandbox.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +40,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User readKakaoUser(String kakaoId) {
         return userRepository.findByKakaoId(kakaoId)
-                .orElseThrow(() -> new TodoNotFoundException("정상적이지 않은 요청입니다."));
+                .orElseThrow(() -> new DatabaseException(ErrorCode.USER_NOT_FOUND));
     }
 }

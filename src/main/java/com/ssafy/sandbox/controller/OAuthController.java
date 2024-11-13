@@ -3,8 +3,10 @@ package com.ssafy.sandbox.controller;
 import com.ssafy.sandbox.controller.request.ReadTokenReq;
 import com.ssafy.sandbox.controller.response.AccessTokenRes;
 import com.ssafy.sandbox.controller.response.ReadMemberRes;
+import com.ssafy.sandbox.controller.response.ReissueTokenRes;
 import com.ssafy.sandbox.domain.oauth.dto.ReadUserResDto;
 import com.ssafy.sandbox.domain.oauth.dto.ReadTokenResDto;
+import com.ssafy.sandbox.domain.oauth.dto.ReissueTokenResDto;
 import com.ssafy.sandbox.domain.oauth.service.OauthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +41,17 @@ public class OAuthController {
 
         return ResponseEntity.ok(
                 new ReadMemberRes(resDto.getNickname())
+        );
+    }
+
+    @GetMapping("/reissue")
+    public ResponseEntity<ReissueTokenRes> reissueToken(
+            @CookieValue(value = "RefreshToken", required = false) String refreshToken) {
+
+         ReissueTokenResDto resDto = oauthService.reissueToken(refreshToken);
+
+        return ResponseEntity.ok(
+                new ReissueTokenRes(resDto.getAccessToken())
         );
     }
 }

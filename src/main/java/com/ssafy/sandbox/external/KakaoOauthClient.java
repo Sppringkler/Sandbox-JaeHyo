@@ -1,5 +1,6 @@
 package com.ssafy.sandbox.external;
 
+import com.ssafy.sandbox.external.response.KakaoReissueTokenRes;
 import com.ssafy.sandbox.external.response.KakaoUserInfoRes;
 import com.ssafy.sandbox.external.response.KakaoTokenRes;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +43,22 @@ public class KakaoOauthClient {
                 .header("Authorization", "Bearer " + accessToken)
                 .retrieve()
                 .bodyToMono(KakaoUserInfoRes.class)
+                .block();
+    }
+
+    public KakaoReissueTokenRes reissueToken(String refreshToken) {
+        String url = "https://kauth.kakao.com/oauth/token";
+
+        return WebClient.builder()
+                .baseUrl(url)
+                .build()
+                .post()
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .body(BodyInserters.fromFormData("grant_type", "refresh_token")
+                        .with("client_id", clientId)
+                        .with("refresh_token", refreshToken))
+                .retrieve()
+                .bodyToMono(KakaoReissueTokenRes.class)
                 .block();
     }
 }

@@ -4,10 +4,11 @@ import com.ssafy.sandbox.controller.request.CreateTodoReq;
 import com.ssafy.sandbox.domain.todo.dto.response.ReadTodosResDto;
 import com.ssafy.sandbox.domain.todo.entity.Todo;
 
-import com.ssafy.sandbox.global.exception.TodoNotFoundException;
 import com.ssafy.sandbox.domain.todo.mapper.TodoServiceMapper;
 import com.ssafy.sandbox.domain.todo.repository.TodoRepository;
 import com.ssafy.sandbox.domain.todo.service.TodoService;
+import com.ssafy.sandbox.global.exception.type.DatabaseException;
+import com.ssafy.sandbox.global.exception.ErrorCode;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,7 @@ public class TodoServiceImpl implements TodoService {
     @Transactional
     public void updateTodo(int todoId) {
         Todo todo = todoRepository.findById(todoId)
-                .orElseThrow(() -> new TodoNotFoundException("정상적이지 않은 요청입니다."));
+                .orElseThrow(() -> new DatabaseException(ErrorCode.TODO_NOT_FOUND));
 
         todo.setCompleted(!todo.isCompleted());
     }
@@ -54,7 +55,7 @@ public class TodoServiceImpl implements TodoService {
     @Transactional
     public void deleteTodo(int todoId) {
         Todo todo = todoRepository.findById(todoId)
-                .orElseThrow(() -> new TodoNotFoundException("정상적이지 않은 요청입니다."));
+                .orElseThrow(() -> new DatabaseException(ErrorCode.TODO_NOT_FOUND));
 
         todoRepository.deleteById(todo.getId());
     }

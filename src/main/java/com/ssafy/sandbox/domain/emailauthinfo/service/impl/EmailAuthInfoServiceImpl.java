@@ -3,10 +3,8 @@ package com.ssafy.sandbox.domain.emailauthinfo.service.impl;
 import com.ssafy.sandbox.domain.emailauthinfo.entity.EmailAuthInfo;
 import com.ssafy.sandbox.domain.emailauthinfo.repository.EmailAuthInfoRepository;
 import com.ssafy.sandbox.domain.emailauthinfo.service.EmailAuthInfoService;
-import com.ssafy.sandbox.global.exception.ExpiredAuthenticationException;
-import com.ssafy.sandbox.global.exception.MailSendFailException;
-import com.ssafy.sandbox.global.exception.NotCorrectAuthenticationException;
-import com.ssafy.sandbox.global.exception.NotFoundEmailAuthInfoException;
+import com.ssafy.sandbox.global.exception.*;
+import com.ssafy.sandbox.global.exception.type.BusinessException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -64,7 +62,7 @@ public class EmailAuthInfoServiceImpl implements EmailAuthInfoService {
         try {
             javaMailSender.send(simpleMailMessage);
         } catch (MailException e) {
-            throw new MailSendFailException("이메일 전송에 실패했습니다.");
+            throw new BusinessException(ErrorCode.EMAIL_SEND_FAILURE);
         }
     }
 
@@ -72,13 +70,13 @@ public class EmailAuthInfoServiceImpl implements EmailAuthInfoService {
     @Transactional
     public void authenticate(String email, String authentication) {
         EmailAuthInfo emailAuthInfo = emailAuthInfoRepository.findByEmail(email)
-                .orElseThrow(() -> new NotFoundEmailAuthInfoException("해당 이메일로 전송된 인증번호가 없습니다."));
+                .orElseThrow(() -> new BusinessException(ErrorCode.EMAIL_AUTH_INFO_NOT_FOUND));
 
         if (now().isAfter(emailAuthInfo.getExpiredAt())) {
-            throw new NotCorrectAuthenticationException("만료된 인증입니다.");
+            throw new BusinessException(ErrorCode.EMAIL_AUTH_INFO_EXPIRED);
         }
         if (!Objects.equals(authentication, emailAuthInfo.getAuthCode())) {
-            throw new ExpiredAuthenticationException("인증번호가 일치하지 않습니다.");
+            throw new BusinessException(ErrorCode.EMAIL_AUTH_CODE_INCORRECT);
         }
 
         emailAuthInfoRepository.deleteByEmail(email);
