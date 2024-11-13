@@ -1,13 +1,11 @@
 package com.ssafy.sandbox.global.exception;
 
-import com.ssafy.sandbox.controller.response.BooleanRes;
 import com.ssafy.sandbox.controller.response.BooleanSuccessRes;
 import com.ssafy.sandbox.controller.response.ErrorRes;
 import com.ssafy.sandbox.global.exception.type.BusinessException;
 import com.ssafy.sandbox.global.exception.type.DatabaseException;
 import com.ssafy.sandbox.global.exception.type.ValidationException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
