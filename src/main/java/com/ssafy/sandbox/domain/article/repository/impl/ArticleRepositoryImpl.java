@@ -1,6 +1,5 @@
 package com.ssafy.sandbox.domain.article.repository.impl;
 
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.sandbox.domain.article.entity.Article;
 import com.ssafy.sandbox.domain.article.repository.ArticleRepository;
