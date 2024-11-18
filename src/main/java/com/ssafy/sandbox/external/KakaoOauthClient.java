@@ -5,6 +5,7 @@ import com.ssafy.sandbox.external.response.KakaoReissueTokenRes;
 import com.ssafy.sandbox.external.response.KakaoUserInfoRes;
 import com.ssafy.sandbox.external.response.KakaoTokenRes;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -14,11 +15,13 @@ import org.springframework.web.reactive.function.client.WebClient;
 @RequiredArgsConstructor
 public class KakaoOauthClient {
 
-    private final String clientId = "0da56a0700a56821782b91c49ce03b42";
-    private final String redirectUri = "https://ssafysandbox.vercel.app/oauth/redirect";
+    @Value("${kakao.client-id}")
+    private String clientId;
 
     public KakaoTokenRes getToken(String code) {
+
         String url = "https://kauth.kakao.com/oauth/token";
+        String redirectUri = "https://ssafysandbox.vercel.app/oauth/redirect";
 
         return WebClient.builder()
                 .baseUrl(url)
