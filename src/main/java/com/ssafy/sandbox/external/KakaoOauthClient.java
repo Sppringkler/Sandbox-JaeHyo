@@ -1,5 +1,6 @@
 package com.ssafy.sandbox.external;
 
+import com.ssafy.sandbox.external.response.KakaoLogoutRes;
 import com.ssafy.sandbox.external.response.KakaoReissueTokenRes;
 import com.ssafy.sandbox.external.response.KakaoUserInfoRes;
 import com.ssafy.sandbox.external.response.KakaoTokenRes;
@@ -59,6 +60,19 @@ public class KakaoOauthClient {
                         .with("refresh_token", refreshToken))
                 .retrieve()
                 .bodyToMono(KakaoReissueTokenRes.class)
+                .block();
+    }
+
+    public KakaoLogoutRes logout(String accessToken) {
+        String url = "https://kapi.kakao.com/v1/user/logout";
+
+        return WebClient.builder()
+                .baseUrl(url)
+                .build()
+                .post()
+                .header("Authorization", "Bearer " + accessToken)
+                .retrieve()
+                .bodyToMono(KakaoLogoutRes.class)
                 .block();
     }
 }

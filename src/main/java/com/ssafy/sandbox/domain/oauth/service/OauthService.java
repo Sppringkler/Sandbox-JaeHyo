@@ -10,4 +10,6 @@ public interface OauthService {
     ReadUserResDto readMember(String accessToken);
 
     ReissueTokenResDto reissueToken(String refreshToken);
+
+    void logout(String refreshToken);
 }

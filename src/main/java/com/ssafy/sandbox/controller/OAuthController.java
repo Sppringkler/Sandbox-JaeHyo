@@ -54,4 +54,15 @@ public class OAuthController {
                 new ReissueTokenRes(resDto.getAccessToken())
         );
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(
+            @CookieValue(value = "RefreshToken", required = false) String refreshToken) {
+
+        oauthService.logout(refreshToken);
+
+        return ResponseEntity.ok()
+                .header("Set-Cookie", "RefreshToken=; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=0")
+                .build();
+    }
 }
